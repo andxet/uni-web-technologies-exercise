@@ -67,7 +67,7 @@
         	<?php
         		global $errori;
         		require_once("script/newsletter.php");
-        		if(check($_POST)){
+        		if(check($_POST))
         			echo "<h2> Registrazione completata! </h2>";
         			}
         		else{

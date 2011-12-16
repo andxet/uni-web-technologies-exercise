@@ -1,3 +1,12 @@
+<?php
+	global $errori;
+	require_once("script/newsletter.php");
+	if($_POST)
+		if(check($_POST)){
+			header("Location: registrazione.php");
+		}
+?> 
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
@@ -70,16 +79,16 @@
                 <div id="errori">
               		<?php
               		function setPrecedenti($nome){
-              		global $_GET;
-              		$precedente = '""';
-              		if(isset($_GET[$nome]))
-                      	$precedente = $_GET[$nome];
+              		if(isset($_POST[$nome]))
+                      	return $_POST[$nome];
+                    else
+                    	return '""';
                     }
               		
               		function isSelected($freq){
-              			global $_GET;
+              			//global $_POST;
               			global $frequenza;
-              			if($frequenza == "")
+              			if($frequenza == '""')
               				$frequenza = "daily";
               			if (strcmp($frequenza, $freq) == 0)
               				return '"selected"';
@@ -87,9 +96,9 @@
               		}
               		
               		function isChecked($focused){
-              			global $_GET;
+              			//global $_POST;
               			global $tipo;
-              			if($tipo == "")
+              			if($tipo == '""')
               				$tipo = "html";
               			if (strcmp($tipo, $focused) == 0)
               				return 'checked';
@@ -97,20 +106,20 @@
               				return "";
               		}
               		
-              		if(!isset($_GET))
-              			$_GET = array();
+              		if(!isset($_POST))
+              			$_POST = array();
                     $nome = setPrecedenti('firstname'); 
                     $cognome = setPrecedenti('lastname');
                     $email = setPrecedenti('email');
                     $frequenza = setPrecedenti('frequency');
                     $tipo = setPrecedenti('type');
                     $commenti = setPrecedenti('comments');
-                    echo $nome.$cognome.$email.$frequenza.$tipo.$commenti;
-                    echo setPrecedenti('errori');
+                    //echo $nome.$cognome.$email.$frequenza.$tipo.$commenti;
+                    echo $errori;
               		?>
 
                 </div>
-                <form method="post" name="modulo" action="registrazione.php">
+                <form method="post" name="modulo" action="newsletter.php">
             		<input type="hidden" name="jsIsEnabled" value="NO">
                     <fieldset>
                     <legend>User Details</legend>
@@ -149,7 +158,7 @@
             
                         <textarea name="comments"
                             rows="20" cols="50"
-                            tabindex="40" value=<?php echo '"'.$commenti.'"'; ?>></textarea>   
+                            tabindex="40"><?php echo $commenti; ?></textarea>   
                         
             
                     <p>                        

@@ -80,7 +80,6 @@ function hasProhibitedChars(campo, nomeCampo){
 function convalida(){
 	if(check()){
 			document.modulo.jsIsEnabled.value="YES";
-			document.modulo.action = "registrazione.php" ;
 			document.modulo.submit();
         }
     else return false;        
