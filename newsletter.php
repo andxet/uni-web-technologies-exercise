@@ -2,7 +2,8 @@
 	global $errori;
 	require_once("script/newsletter.php");
 	if($_POST)
-		if(check($_POST)){
+		if(isset($_POST["jsIsEnabled"]) && ($_POST["jsIsEnabled"] == "YES" || check($_POST))){
+			//faiCose();
 			header("Location: registrazione.php");
 		}
 ?> 
@@ -82,7 +83,7 @@
               		if(isset($_POST[$nome]))
                       	return $_POST[$nome];
                     else
-                    	return '""';
+                    	return;
                     }
               		
               		function isSelected($freq){
@@ -179,8 +180,8 @@
                     	//  -->
                     </script>
                     <noscript>
-                    	<button name="reset" type="reset">
-                        Reset<img src="images/cancel.gif" alt="cancel_button_image"></button>
+                    	<button name="reset"><a href="newsletter.php">
+                    	Reset<img src="images/cancel.gif" alt="cancel_button_image"></a></button>
                     </noscript>
                     </p>
             
