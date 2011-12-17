@@ -65,38 +65,39 @@
 
         
         <div id="content">
-        
+        	<?php
+        		require_once("script/photo.php");
+        		
+				$array_ext=array('.jpg','.jpeg','.gif');
+				$arrayfoto=array();
+				$arrayfoto=elencafiles("./gallery/",$array_ext);
+				//echo $arrayfoto;
+				if(!isset($arrayfoto))
+					echo "<h2>Non esistono foto! </h2>";
+        	?>
+        	<script type="text/javascript">
+				<!--
+					<?php
+						for ($i = 0; $i < count($arrayfoto); $i++)
+							echo "addImage(\"$arrayfoto[$i]\", $i);\n";
+					?>
+        		//  -->
+			</script>
         	<div id="immagineGrande">
-        		<img src="gallery/acdc_2.jpg" alt="gallery/acdc_2.jpg" onclick="ingrandisci()" name="immaginona"/>
+        		<img src="<?php echo "./gallery/".$arrayfoto[0]; ?>" alt=<?php echo $arrayfoto[0]; ?> onclick="ingrandisci()" name="immaginona"/>
         	</div>
         	<div id="comandiFoto">
         		<a href="#" onclick="prev()"> Indietro </a> | <a href="#" onclick="next()"> Avanti </a> <a href="#" onclick="ingrandisci()"> Apri in un altra finestra</a>
         	</div>
         	<div id="elencoAnteprime">
-	        	<div>
-	        		<img src="gallery/mini/acdc_2.jpg" alt="gallery/mini/acdc_2.jpg" onclick="visualizza(0)" name="miniatura0" class="anteprima"/>
-	        	</div>
-	        	<div>
-	        		<img src="gallery/mini/acdc_3.jpg" alt="gallery/mini/acdc_3.jpg" onclick="visualizza(1)" name="miniatura1" class="anteprima"/>
-	        	</div>
-	        	<div>
-	        		<img src="gallery/mini/acdc_wallpaper.jpg" alt="gallery/mini/acdc_wallpaper.jpg" onclick="visualizza(2)" name="miniatura2" class="anteprima"/>
-	        	</div>
-	        	<div>
-	        		<img src="gallery/mini/acdc-let_there_be_rock-frontal.jpg" alt="gallery/mini/acdc-let_there_be_rock-frontal.jpg" onclick="visualizza(3)" name="miniatura3" class="anteprima" />
-	        	</div>
-	        	<div>
-	        		<img src="gallery/mini/ACDC-Who_Made_Who-Frontal.jpg" alt="gallery/mini/ACDC-Who_Made_Who-Frontal.jpg" onclick="visualizza(4)" name="miniatura4" class="anteprima" />
-	        	</div>
-	        	<div>
-	        		<img src="gallery/mini/acdc20_1024x768.jpg" alt="gallery/mini/acdc20_1024x768.jpg" onclick="visualizza(5)" name="miniatura5" class="anteprima" />
-	        	</div>
-	        	<div>
-	        		<img src="gallery/mini/logo.jpg" alt="gallery/mini/logo.jpg" onclick="visualizza(6)" name="miniatura6" class="anteprima" />
-	        	</div>
-	            <div>
-	        		<img src="gallery/mini/Madrid-acdc_12.jpg" alt="gallery/mini/Madrid-acdc_12.jpg" onclick="visualizza(7)" name="miniatura7" class="anteprima" />
-	        	</div>  
+        		<?php
+        			for ($i = 0; $i < count($arrayfoto); $i++){
+        				echo "<div>";
+        				echo "<img src=\"./gallery/mini/$arrayfoto[$i]\" alt=\"$arrayfoto[$i]\" onclick=\"visualizza($i)\" name=\"miniatura$i\" class=\"anteprima\"/>";
+        				echo "</div>\n";
+        			}
+        			
+        		?>
         	</div>
         	  
         </div>

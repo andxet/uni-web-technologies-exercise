@@ -83,7 +83,7 @@
               		if(isset($_POST[$nome]))
                       	return $_POST[$nome];
                     else
-                    	return;
+                    	return null;
                     }
               		
               		function isSelected($freq){
@@ -99,7 +99,7 @@
               		function isChecked($focused){
               			//global $_POST;
               			global $tipo;
-              			if($tipo == '""')
+              			if($tipo == null)
               				$tipo = "html";
               			if (strcmp($tipo, $focused) == 0)
               				return 'checked';
