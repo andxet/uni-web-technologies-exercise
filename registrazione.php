@@ -64,17 +64,7 @@
         </div>
         
         <div id="content">
-        	<?php
-        		global $errori;
-        		require_once("script/newsletter.php");
-        		if(check($_POST))
-        			echo "<h2> Registrazione completata! </h2>";
-        			}
-        		else{
-        			$indirizzo = makeUrl($_POST);
-        			echo "<h2> Il form contiene degli errori.</h2> <br /> $errori <br /><a href="'.$indirizzo.'"> Indietro </a>";
-        			}
-        	?>  
+        	<h2> Registrazione completata! </h2>
         </div>
   		<div id="footer">
        		<p class="menu"><a href="http://wikipedia.org">Wikipedia</a>&nbsp;|&nbsp;<a href="http://www.acdc.com">Official Site</a>&nbsp;|&nbsp;<a href="mailto:schi@di.unito.it">Contact</a></p>
