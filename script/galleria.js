@@ -1,12 +1,10 @@
 var immagini = new Array();
-immagini[0] = "acdc_2.jpg";
-immagini[1] = "acdc_3.jpg";
-immagini[2] = "acdc_wallpaper.jpg";
-immagini[3] = "acdc-let_there_be_rock-frontal.jpg";
-immagini[4] = "ACDC-Who_Made_Who-Frontal.jpg";
-immagini[5] = "acdc20_1024x768.jpg";
-immagini[6] = "logo.jpg";
-immagini[7] = "Madrid-acdc_12.jpg";
+
+
+//Funzione che aggiunge al vettore precedentemente creato l'immagine passata per nome.
+function addImage(name, indice){
+	immagini[indice] = name;
+}
 
 var path = "gallery/";
 var imgBig = document.getElementsByName("imgBig");
