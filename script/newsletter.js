@@ -100,12 +100,5 @@ function isLong(campo, nomeCampo){
 function conferma_eliminazione() { 
 	conferma = confirm("Sei sicuro di voler cancellare tutto il contenuto del form?"); 
 	if (conferma) 
-	{ 
-		document.modulo.firstname.value = "";
-		document.modulo.lastname.value = ""; 
-		document.modulo.email.value = "";
-		//document.modulo.frequency.firstChild.selected = true;//frequency
-		//Type
-		document.modulo.comments.value = "";//Comments
-	} 
+		document.modulo.reset();
 } 

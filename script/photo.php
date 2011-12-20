@@ -2,6 +2,8 @@
 	define("DIR_IMMAGINI", "./gallery");
 	$formati_immagine = array(".jpg", ".gif", ".png", ".jpeg");
 
+	$photoPerLine = 7;
+
 function elencafiles($dirname,$arrayext){
 	$arrayfiles=Array();
 	if(file_exists($dirname)){
@@ -18,6 +20,34 @@ function elencafiles($dirname,$arrayext){
 	}
 	sort($arrayfiles);
 	return $arrayfiles;
+}
+
+
+function creaMiniatura($immagine){
+
+require_once('config.php');
+global $miniature_path;
+global $gallery_path;
+$dest = $miniature_path.$immagine; // directory di salvataggio delle miniature create 
+$img = $gallery_path.$immagine;
+if(!file_exists($img))
+	return;
+// dimensioni della miniatura da creare 
+$thumbWidth = 150; // larghezza  
+$thumbHeight = 150; // altezza  
+// livello di compressione della miniatura 
+$thumbComp = 80; 
+
+// creazione dell'immagine della miniatura 
+$thumb = imagecreatetruecolor($thumbWidth, $thumbHeight) or die("Impossibile creare la miniatura"); 
+// apertura dell'immagine originale  
+$src = imagecreatefromjpeg($img) or die ("Impossibile aprire l'immagine originale"); 
+
+// copio l'immagine originale in quella della miniatura ridimensionandola 
+imagecopyresized($thumb, $src, 0, 0, 0, 0, $thumbWidth, $thumbHeight, imageSx($src), imageSy($src)) or die("Impossibile ridimensionare l'immagine");
+
+// salvataggio miniatura 
+imagejpeg($thumb, $dest, $thumbComp) or die("Impossibile salvare la miniatura"); 
 }
 
 /*
