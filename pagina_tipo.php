@@ -32,7 +32,7 @@
             <div id="info">
             	<script type="text/javascript">
 				<!--
-				stampaInfo();
+					stampaInfoAlt();
 				//  -->
 				</script>
             </div>

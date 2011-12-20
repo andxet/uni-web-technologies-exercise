@@ -1,5 +1,4 @@
 <?php
-	$Q_GET_ALL_ALBUM = "SELECT * FROM Dischi";
 /*require_once('db.php');
 $user = 'root';
 $pass = 'root';
@@ -44,7 +43,7 @@ function getAlbums(){
 }*/
 
 function getAlbums(){
-	global $Q_GET_ALL_ALBUM;
+	$Q_GET_ALL_ALBUM = "SELECT * FROM Dischi";
 
 	$db = dbConnect();
 	$albums = mysql_query($Q_GET_ALL_ALBUM, $db)

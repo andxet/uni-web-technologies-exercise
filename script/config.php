@@ -10,4 +10,5 @@
 	$gallery_path = 'gallery/';
 	$miniature_path = 'gallery/mini/';
 	$images_path = 'images/';
+	$artisti_path = 'artisti/';
 ?>

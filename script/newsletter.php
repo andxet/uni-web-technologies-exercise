@@ -1,5 +1,9 @@
 <?php
-function check($vect){
+
+	$paginaControllo = "newsletter.php";
+	$paginaRegistrazione = "newsletter.php";
+
+	function check($vect){
 	global $nome; $nome = $vect['firstname'];
 	$nomeName = "Nome";
 	global $cognome; $cognome = $vect['lastname'];
@@ -94,5 +98,34 @@ function makeUrl($vett){
 global $errori;
 return "newsletter.php?firstname=".$vett['firstname']."&lastname=".$vett['lastname']."&email=".$vett['email']."&frequency=".$vett['frequency']."&type=".$vett['type']."&comments=".$vett['comments']."&errori=".$errori;
 }
+
+function setPrecedenti($nome){
+	if(isset($_POST[$nome]))
+  		return $_POST[$nome];
+	else
+		return null;
+}
+	
+function isSelected($freq){
+	//global $_POST;
+	global $frequenza;
+	if($frequenza == '""')
+		$frequenza = "daily";
+	if (strcmp($frequenza, $freq) == 0)
+		return 'selected';
+	else return "";
+}
+	
+function isChecked($focused){
+	//global $_POST;
+	global $tipo;
+	if($tipo == null)
+		$tipo = "html";
+	if (strcmp($tipo, $focused) == 0)
+		return 'checked';
+	else
+		return "";
+}
+
 
 ?>

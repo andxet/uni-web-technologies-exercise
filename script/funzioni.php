@@ -28,7 +28,10 @@ function stampa_menu(){
 function printTitolo($pagina){
 	require_once('DbConn.php');
 	$titolo = mysql_fetch_array(getTitolo($pagina));
-	echo $titolo['titolo'];
+	if($titolo === false)
+		echo "AC/DC fan page";
+	else
+		echo $titolo['titolo'];
 }
 
 function printHeader(){
@@ -38,7 +41,7 @@ function printHeader(){
 }
 
 function printFooter(){
-	echo "<p class=\"menu\"><a href=\"http://wikipedia.org\">Wikipedia</a>&nbsp;|&nbsp;<a href=\"http://www.acdc.com\">Official Site</a>&nbsp;|&nbsp;<a href=\"mailto:schi@di.unito.it\">Contact</a></p>";
+	echo "<p class=\"menu\"><a href=\"http://wikipedia.org\">Wikipedia</a>&nbsp;|&nbsp;<a href=\"http://www.acdc.com\">Official Site</a>&nbsp;|&nbsp;<a href=\"mailto:andrea.peretti@studenti.unito.it\">Contact</a></p>";
 }
 
 ?>
