@@ -1,4 +1,5 @@
 <?php
+	$Q_GET_ALL_ALBUM = "SELECT * FROM Dischi";
 /*require_once('db.php');
 $user = 'root';
 $pass = 'root';
@@ -17,11 +18,11 @@ $Q_GET_ALL_ALBUM = "SELECT * FROM Dischi";
 }*/
     
 function dbConnect(){
-
-	$user = 'root';
-	$pass = 'root';
-	$host = 'localhost';
-	$db_name = 'Sito04_718024';
+	require_once('config.php');
+	global $user;
+	global $pass;
+	global $host;
+	global $db_name;
 	
 	$db = mysql_connect($host, $user, $pass)
 		or die("Connessione non riuscita: " . mysql_error());
@@ -43,7 +44,7 @@ function getAlbums(){
 }*/
 
 function getAlbums(){
-	$Q_GET_ALL_ALBUM = "SELECT * FROM Dischi";
+	global $Q_GET_ALL_ALBUM;
 
 	$db = dbConnect();
 	$albums = mysql_query($Q_GET_ALL_ALBUM, $db)
@@ -52,4 +53,33 @@ function getAlbums(){
 	return $albums;
 }
 
+function getMenus(){
+	$Q_GET_MENUS = "SELECT * FROM Menu ORDER BY posizione";
+	
+	$db = dbConnect();
+	$menus = mysql_query($Q_GET_MENUS, $db)
+		or die("Query non valida: " . mysql_error());
+	mysql_close($db);
+	return $menus;
+}
+	
+function getPages($menu){
+	$Q_GET_PAGES = "SELECT * FROM Pagine WHERE menu=$menu ORDER BY posizione";
+	
+	$db = dbConnect();
+	$pages = mysql_query($Q_GET_PAGES, $db)
+		or die("Query non valida: " . mysql_error());
+	mysql_close($db);
+	return $pages;
+}
+
+function getTitolo($pagina){
+	$Q_GET_TITOLO = "SELECT * FROM  `Pagine` WHERE  `link` =  '$pagina'";
+	$db = dbConnect();
+	$titolo = mysql_query($Q_GET_TITOLO, $db)
+		or die("Query non valida: " . mysql_error());
+	mysql_close($db);
+	return $titolo;
+}
+	
 ?>
